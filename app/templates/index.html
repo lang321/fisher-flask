@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{#替换父节点#}
+{% block navbar %}
+{#    {{ super() }}#}
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+{#    {% set message = get_flashed_messages(category_filter='error') %}#}
+{#    {{ message }}#}
+    {% with message = get_flashed_messages(category_filter='error') %}
+        {{ message }}
+    {% endwith %}
+
+    <br>
+
+    {% set str='<input type="text">' %}
+    {{ str }}
+
+    {% macro xx(name, type='text', value='') %}
+        <input type="{{ type }}" name="{{ name }}" value="{{ value }}" />
+    {% endmacro %}
+    {{ xx('age') }}
+
+    <a href="{{ url_for('web.h1', name='hello') }}">hello</a>
+    <p>姓名：{{ data.name | default('未名') }}</p>
+    <p>姓名长度：{{ data.name | length() }}</p>
+    <p>年龄：{{data.age}}</p>
+    {% if data.age < 20 %}
+        {{ data.name | default('未名') }}
+    {% elif data.age == 20 %}
+         <p>年龄为 20</p>
+    {% else %}
+        <p>年龄大于20</p>
+    {% endif %}
+
+    {% for i in range(5) %}
+        <h3>{{ i }}</h3>
+    {% endfor %}
+
+    <img src="{{ url_for('static', filename='images/01.png') }}" />
+    <img src="/static/images/2.png" />
+    <button>更换图片</button>
+    <script src="{{ url_for('static', filename='3rd/jquery-1.7.1.min.js') }}"></script>
+{% endblock %}
+

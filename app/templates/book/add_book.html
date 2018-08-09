@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <div style="padding: 50px;">
+        <form method="post" action="/book/add">
+            <div>
+                <lable>书名：</lable><input type="text" name="title"
+                                         value="{{ form.data['title'] | default('', true) }}" />
+            </div>
+            <div>
+                <lable>作者：</lable><input type="text" name="author"
+                                         value="{{ form.data['author'] | default('', true) }}" />
+            </div>
+            <div>
+                <lable>价格：</lable><input type="text" name="price"
+                                         value="{{ form.data['price'] | default('', true) }}" />
+            </div>
+            <div>
+                <lable>ISBN：</lable><input type="text" name="isbn"
+                                         value="{{ form.data['isbn'] | default('', true) }}" />
+            </div>
+            <div>
+                <lable>介绍：</lable><input type="text" name="summery"
+                                         value="{{ form.data['summery'] | default('', true) }}" />
+            </div>
+            <div>
+                <input type="submit" value="提交">
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
